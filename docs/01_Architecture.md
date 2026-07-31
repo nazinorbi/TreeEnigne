@@ -6,7 +6,7 @@
 <li>TreeRepositoryInterface – a fa tartós tárolása és betöltése</li>
 </ul>
 <h3>Tree Node</h3>
-<ol>
+<br>
 <li>Mi pontosan egy TreeNode?</li>
     <p>A Tree Node az egy csomó pont a filogenetikus fában objektum szinten definiálva. Ami tartamz minden olyan adatot amit az sql le tárol</p>
 <li>Hogyan kapcsolódik egy node a szülőjéhez és gyermekeihez?</li>
@@ -16,8 +16,10 @@
 <li>Hol tároljuk az egyéb metaadatokat?</li>
     <p>A meta adatokat egy külön áló táblában van tárolva és  nodeId külső kulcsal van össze kötve</p>
 <li>Mit jelent a verify, és milyen hibákat kell felismernie?</li>
-    <p>A verify nem javítja a fát, hanem ellenőrzi, hogy a lft és rgt értékekből rekonstruálható-e egy szabályos hierarchia./p>
-    <h4>Ellenőriznie kell legalább:</h4>
+    <p>A verify nem javítja a fát, hanem ellenőrzi, hogy a lft és rgt értékekből rekonstruálható-e egy szabályos hierarchia.<br><br>
+        A részfa beillesztése csak akkor tekinthető sikeresnek, ha a módosított főfa Nested Set struktúrája konzisztens,
+        és a gyökér lft/rgt intervalluma alapján számított node-szám megegyezik a főfában ténylegesen található node-ok számával.</p>    
+<h4>Ellenőriznie kell legalább:</h4>
     <ol>
         <li>Értéktartomány
             <p>- a számozás 1-től indul</p>
