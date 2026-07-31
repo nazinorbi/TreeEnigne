@@ -12,7 +12,7 @@
 <li>Hogyan kapcsolódik egy node a szülőjéhez és gyermekeihez?</li>
     <P>A Nested Set Model logikai elvét követve</P>
 <li>Hogyan azonosítunk egy node-ot?</li>
-    <p>nodeId- Ez soha sem változik. A szám képzése a lft és rgt értékéből tevődik össze: lft+rgt. pl. 5 és 65 akkor az id értéke->565</p>
+    <p>nodeId- Ez soha sem változik. mikroszekundum pontosságú UTC timestamp + egy 6 karakteres véleltlen szám.</p>
 <li>Hol tároljuk az egyéb metaadatokat?</li>
     <p>A meta adatokat egy külön áló táblában van tárolva és  nodeId külső kulcsal van össze kötve</p>
 <li>Mit jelent a verify, és milyen hibákat kell felismernie?</li>
