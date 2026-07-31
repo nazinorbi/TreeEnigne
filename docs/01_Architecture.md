@@ -16,7 +16,32 @@
 <li>Hol tároljuk az egyéb metaadatokat?</li>
     <p>A meta adatokat egy külön áló táblában van tárolva és  nodeId külső kulcsal van össze kötve</p>
 <li>Mit jelent a verify, és milyen hibákat kell felismernie?</li>
-    <p>Le kell ellenőriznie hogy a kapott objektum az egy Tree Node objektum</p>
+    <p>A verify nem javítja a fát, hanem ellenőrzi, hogy a lft és rgt értékekből rekonstruálható-e egy szabályos hierarchia./p>
+    <h4>Ellenőriznie kell legalább:</h4>
+    <ol>
+        <li>Értéktartomány
+            <p>- a számozás 1-től indul</p>
+            <p>- a maximális értéknek meg kell egyeznie a számláló végértékével</p>
+            <p>- nem lehet 0 vagy negatív érték</p>
+        </li>
+        <li>Egyediség
+             <p>- egyetlen lft vagy rgt érték sem ismétlődhet</p>
+             <p>- minden érték pontosan egyszer szerepel</p>
+        </li>
+        <li>Páros/páratlan szabály
+             <p>- egy node lft és rgt értékei közül az egyik páratlan, a másik páros.</p>
+        </li> 
+        <li>Levél ellenőrzése
+             <p>rgt - lft = 1 esetén a node levél.</p>
+        </li>
+        <li>Gyermekek száma
+             <p>Egy node akkor lehet egy másik node szülője, ha: parent.lft < child.lft
+                AND parent.rgt > child.rgt A közvetlen szülőt pedig az egymásba ágyazott intervallumok alapján kell meghatározni.</p>
+        <li>Szülő–gyermek kapcsolat
+             <p>A dokumentációban szereplő képlet:
+                (parent.rgt - parent.lft - 1) / 2 megadja a szülő részfájának elemszámát, nem pusztán a közvetlen gyermekek számát.</p>
+        </li>
+    </ol>
 <li>Az export/import milyen formátumokat támogasson – például Newick, JSON, esetleg később Nexus?</li>
     <p>Első körben Newick és JSON ami támógatott.</p>
 <li>Hogyan kezeljük a konkurens szerkesztést?</li>
