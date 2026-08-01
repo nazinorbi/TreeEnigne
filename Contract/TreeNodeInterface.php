@@ -1,8 +1,8 @@
 <?php
 
-namespace App\SymfonyTreeEngine\Contract;
+namespace App\PhyloTree\Contract;
 
-use \App\SymfonyTreeEngine\Contract\TaxonMetadataInterface;
+use \App\PhyloTree\Contract\TaxonMetadataInterface;
 interface TreeNodeInterface
 {
     public function getId(): int;
