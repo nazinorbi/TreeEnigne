@@ -2,6 +2,7 @@
 
 namespace App\PhyloTree\Contract;
 
+use App\PhyloTree\Contract\TreeNodeMetadataInterface;
 interface MutableTreeNodeInterface
 {
     public function setLeft(int $left): void;
