@@ -13,7 +13,7 @@ class TreeNode implements TreeNodeInterface, IteratorAggregate
     private int $id;
     private int $left = 0;
     private int $right = 0;
-    private int $level;
+    private int $level = 0;
 
     private ?TreeNodeMetadataInterface $metadata = null;
 
@@ -23,7 +23,6 @@ class TreeNode implements TreeNodeInterface, IteratorAggregate
      * @var TreeNodeInterface[]
      */
     private array $children = [];
-
 
     public function __construct( int $id) {
 
@@ -48,6 +47,11 @@ class TreeNode implements TreeNodeInterface, IteratorAggregate
     public function getLevel(): int
     {
         return $this->level;
+    }
+
+    public function setLevel(int $level): void
+    {
+        $this->level = $level;
     }
 
     public function getMetadata(): ?TreeNodeMetadataInterface
@@ -75,7 +79,7 @@ class TreeNode implements TreeNodeInterface, IteratorAggregate
     /**
      * Fa információk
      */
-    public function getRoot(): TreeNodeInterface {
+    public function getRoot( TreeNodeInterface $node): TreeNodeInterface {
 
     }
 
@@ -116,6 +120,7 @@ class TreeNode implements TreeNodeInterface, IteratorAggregate
 
     /**
      * @return TreeNodeInterface[]
+     * Egy node összes leszármazottjának lekérése.
      */
     public function getDescendants(TreeNodeInterface $node): array {
 
@@ -324,4 +329,27 @@ class TreeNode implements TreeNodeInterface, IteratorAggregate
     {
         return new ArrayIterator($this->children);
     }
+
+    public  function isDescendantOf(?TreeNodeInterface $parent)
+    {
+
+    }
+    public  function isAncestorOf()
+    {
+
+    }
+    public  function  getPath()
+    {
+
+    }
+    public  function  countDescendants()
+    {
+
+    }
+
+    public  function  validateTree()
+    {
+
+    }
+
 }

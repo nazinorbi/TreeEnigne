@@ -39,4 +39,8 @@ interface TreeNodeInterface
     public function setMetadata(
         TreeNodeMetadataInterface $metadata
     ): void;
+
+    public function getLevel(): int;
+
+    public function setLevel(int $level): void;
 }
