@@ -3,17 +3,15 @@
 namespace App\PhyloTree\Model\Tree;
 
 use App\PhyloTree\Contract\TreeNodeInterface;
-use App\Phylotree\Contract\TreeNodeMetadataInterface;
+use App\PhyloTree\Contract\TreeNodeMetadataInterface;
+use App\PhyloTree\Enum\TaxonomicRankEnum;
 
 class TreeNode implements TreeNodeInterface
 {
-    private int $Id;
-
-    private int $Left;
-
-    private int $Right;
-
-    private int $Level ;
+    private int|string|null $id;
+    private int $left;
+    private int $right;
+    private int $level;
 
     private ?TreeNodeMetadataInterface $metadata;
 
@@ -113,21 +111,6 @@ class TreeNode implements TreeNodeInterface
      * @return TreeNodeInterface[]
      */
     public function findAll(callable $predicate): array {
-
-    }
-
-    /**
-     * Strukturális lekérdezések
-     */
-
-    public function getParent(TreeNodeInterface $node): ?TreeNodeInterface {
-
-    }
-
-    /**
-     * @return TreeNodeInterface[]
-     */
-    public function getChildren(TreeNodeInterface $node): array {
 
     }
 
@@ -266,6 +249,8 @@ class TreeNode implements TreeNodeInterface
 
     /**
      * Iteráció
+     *
+     * még nincs use
      */
     public function getIterator(): Traversable {
 
