@@ -14,4 +14,5 @@ interface TreeNodeInterface
     public function getLevel(): int;
 
     public function getMetadata(): ?TreeNodeMetadataInterface;
+
 }
