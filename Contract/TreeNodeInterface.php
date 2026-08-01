@@ -2,7 +2,7 @@
 
 namespace App\PhyloTree\Contract;
 
-use \App\PhyloTree\Contract\TaxonMetadataInterface;
+use App\PhyloTree\Contract\TaxonMetadataInterface;
 interface TreeNodeInterface
 {
     public function getId(): int;

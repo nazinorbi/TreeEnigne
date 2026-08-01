@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SymfonyTreeEngine\Contract;
+namespace App\PhyloTree\Contract;
 
 use App\PhyloTree\Enum\TaxonomicRankEnum;
 interface TaxonMetadataInterface

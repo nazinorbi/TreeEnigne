@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Nazimecki\Phylotree\Contract;
+namespace App\Phylotree\Contract;
 
 interface TreeValidationInterface
 {

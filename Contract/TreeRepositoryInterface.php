@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SymfonyTreeEngine\Contract;
+namespace App\PhyloTree\Contract;
 interface TreeRepositoryInterface
 {
     public function load(object $Root): void;
