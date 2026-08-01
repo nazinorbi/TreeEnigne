@@ -1,33 +1,34 @@
 <?php
 
-namespace App\PhyloTree\Model\Tree;
+namespace App\PhyloTree\Model;
 
 use App\PhyloTree\Contract\TreeNodeInterface;
 use App\PhyloTree\Contract\TreeNodeMetadataInterface;
 use App\PhyloTree\Enum\TaxonomicRankEnum;
+use ArrayIterator;
+use Traversable;
 
-class TreeNode implements TreeNodeInterface
+class TreeNode implements TreeNodeInterface, IteratorAggregate
 {
-    private int|string|null $id;
-    private int $left;
-    private int $right;
+    private int $id;
+    private int $left = 0;
+    private int $right = 0;
     private int $level;
 
-    private ?TreeNodeMetadataInterface $metadata;
+    private ?TreeNodeMetadataInterface $metadata = null;
+
+    private ?TreeNodeInterface $parent = null;
+
+    /**
+     * @var TreeNodeInterface[]
+     */
+    private array $children = [];
 
 
-    public function __construct(
-        int|string|null $id = null,
-        int $left = 0,
-        int $right = 0,
-        int $level = 0,
-        ?TreeNodeMetadataInterface $metadata = null
-    ) {
+    public function __construct( int $id) {
+
         $this->id = $id;
-        $this->left = $left;
-        $this->right = $right;
-        $this->level = $level;
-        $this->metadata = $metadata;
+
     }
     public function getId(): int
     {
@@ -60,7 +61,7 @@ class TreeNode implements TreeNodeInterface
      */
     public function isLeaf(): bool
     {
-        return ($this->right - $this->left) === 1;
+        return count($this->children) === 0;
     }
 
 
@@ -131,8 +132,11 @@ class TreeNode implements TreeNodeInterface
     /**
      * @return TreeNodeInterface[]
      */
-    public function getSiblings(TreeNodeInterface $node): array {
+    public function getLeftSiblings(TreeNodeInterface $node): array {
 
+    }
+    public function getRightSiblings(TreeNodeInterface $node): array {
+        return ($this->right - $this->left) === 1;
     }
 
     /**
@@ -252,8 +256,73 @@ class TreeNode implements TreeNodeInterface
      *
      * még nincs use
      */
-    public function getIterator(): Traversable {
-
+    /**public function getIterator(): \Traversable
+    {
+        return new \ArrayIterator($this->children);
+    }
+    */
+    public function getParent(): ?TreeNodeInterface
+    {
+        return $this->parent;
     }
 
+    public function setParent(?TreeNodeInterface $parent): void
+    {
+        $this->parent = $parent;
+    }
+
+    public function getChildren(): array
+    {
+        return $this->children;
+    }
+
+    public function addChild(TreeNodeInterface $child): void
+    {
+        $this->children[] = $child;
+
+        $child->setParent($this);
+    }
+
+    public function removeChild(TreeNodeInterface $child): void
+    {
+        foreach ($this->children as $key => $item) {
+
+            if ($item === $child) {
+
+                unset($this->children[$key]);
+
+                $child->setParent(null);
+
+                break;
+            }
+        }
+        $this->children = array_values($this->children);
+    }
+
+    public function setLeft(int $left): void
+    {
+        $this->left = $left;
+    }
+
+    public function setRight(int $right): void
+    {
+        $this->right = $right;
+    }
+
+    public function setMetadata(
+        TreeNodeMetadataInterface $metadata
+    ): void
+    {
+        $this->metadata = $metadata;
+    }
+
+    /**
+     * Gyermek node-ok bejárása
+     *
+     * Átírni Sql be
+     */
+    public function getIterator(): \Traversable
+    {
+        return new ArrayIterator($this->children);
+    }
 }
