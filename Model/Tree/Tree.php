@@ -17,6 +17,7 @@ class Tree
     )
     {
         $this->root = $root;
+        $this->rebuildNestedSetValues();
     }
     public function getRoot(): TreeNodeInterface
     {
@@ -96,4 +97,104 @@ class Tree
             .
             ")" . $node->getId();
         }
+
+    public function insertNode(
+        TreeNodeInterface $parent,
+        TreeNodeInterface $node
+    ): void
+    {
+        $parent->addChild($node);
+
+        $this->rebuildNestedSetValues();
+    }
+
+    public function insertSubtree(
+        TreeNodeInterface $parent,
+        TreeNodeInterface $subtreeRoot
+    ): void
+    {
+        $parent->addChild($subtreeRoot);
+
+        $this->rebuildNestedSetValues();
+    }
+
+    public function moveNode(
+        TreeNodeInterface $node,
+        TreeNodeInterface $newParent
+    ): void
+    {
+        /*
+         * Root áthelyezése tiltott
+         */
+        if ($node === $this->root) {
+            throw new \RuntimeException(
+                'Root node cannot be moved'
+            );
+        }
+
+        $oldParent = $node->getParent();
+
+        if ($oldParent !== null) {
+            $oldParent->removeChild($node);
+        }
+
+        $newParent->addChild($node);
+        $this->rebuildNestedSetValues();
+    }
+
+    public function removeSubtree(
+        TreeNodeInterface $node
+    ): void
+    {
+        /*
+         * Root törlése tiltott
+         */
+        if ($node === $this->root) {
+
+            throw new \RuntimeException(
+                'Root node cannot be removed'
+            );
+        }
+        $parent = $node->getParent();
+
+        if ($parent !== null) {
+            $parent->removeChild($node);
+        }
+
+        $this->rebuildNestedSetValues();
+    }
+
+    public function rebuildNestedSetValues(): void
+    {
+
+        $counter = 1;
+        $this->calculateBounds(
+            $this->root,
+            $counter
+        );
+    }
+
+    private function calculateBounds(
+        TreeNodeInterface $node,
+        int &$counter
+    ): void
+    {
+        /*
+         * belépés
+         */
+        $node->setLeft($counter);
+        $counter++;
+
+        foreach ($node as $child) {
+            $this->calculateBounds(
+                $child,
+                $counter
+            );
+        }
+        /*
+         * kilépés
+         */
+        $node->setRight($counter);
+        $counter++;
+    }
 }

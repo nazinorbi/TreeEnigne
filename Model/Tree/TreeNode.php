@@ -64,7 +64,6 @@ class TreeNode implements TreeNodeInterface, IteratorAggregate
         return count($this->children) === 0;
     }
 
-
     /**
      * Gyökér vizsgálata.
      */
