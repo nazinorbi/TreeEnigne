@@ -7,5 +7,11 @@ interface TreeNodeInterface
 {
     public function getId(): int;
 
-    public function getMetadata(): TaxonMetadataInterface;
+    public function getLeft(): int;
+
+    public function getRight(): int;
+
+    public function getLevel(): int;
+
+    public function getMetadata(): ?TreeNodeMetadataInterface;
 }
