@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SymfonyTreeEngine\Exception;
+namespace App\PhíloTree\Exception;
 
 class TreeInconsistencyException
 {
