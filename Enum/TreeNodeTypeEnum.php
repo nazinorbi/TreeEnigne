@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
 
-namespace App\SymfonyTreeEngine\Enum;
+namespace App\PhyloTree\Enum;
 
 namespace App\PhyloTree\Enum;
 
