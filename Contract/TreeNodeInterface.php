@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SymfonyTreeEngine\src\Interface;
+namespace App\SymfonyTreeEngine\Contract;
 
 interface TreeNodeInterface
 {
@@ -10,5 +10,5 @@ interface TreeNodeInterface
 
     public function getRgt(): int;
 
-    public function getMetadata(): TreeNodeMetadataInterface;
+    public function getMetadata(): TaxonMetadataInterface;
 }
