@@ -6,7 +6,7 @@ use App\PhyloTree\Contract\TreeNodeInterface;
 use App\PhyloTree\Contract\TreeNodeMetadataInterface;
 use App\PhyloTree\Enum\TaxonomicRankEnum;
 use ArrayIterator;
-use Traversable;
+use \IteratorAggregate;
 
 class TreeNode implements TreeNodeInterface, IteratorAggregate
 {
