@@ -1,60 +1,194 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\PhyloTree\Contract;
+
+use App\PhyloTree\Contract\TreeNodeInterface;
+use  App\PhyloTree\Exception\TreeStorageException;
 
 interface TreeStorageInterface
 {
-    public function save(object $Root): void;
+    /*
+    |--------------------------------------------------------------------------
+    | Transaction Management
+    |--------------------------------------------------------------------------
+    */
 
-    public function delete(object $Root): void;
-
-    public function transaction(object $Root): void;
-
-    public function unlock(object $Root): void;
-
-    public function flush(object $Root): void;
-    /**
-     * Starts a transaction.
-     */
     public function beginTransaction(): void;
 
-    /**
-     * Commits the current transaction.
-     */
     public function commit(): void;
 
-    /**
-     * Rolls back the current transaction.
-     */
     public function rollback(): void;
 
-    /**
-     * Marks a node for persistence.
-     */
-    public function persist(TreeNodeInterface $node): void;
 
-    /**
-     * Removes a node.
-     */
-    public function remove(TreeNodeInterface $node): void;
+    /*
+    |--------------------------------------------------------------------------
+    | Locking
+    |--------------------------------------------------------------------------
+    */
 
-    /**
-     * Reloads the node from storage.
-     */
-    public function refresh(TreeNodeInterface $node): void;
+    public function lockTree(): void;
 
-    /**
-     * Locks a single node.
-     */
-    public function lock(TreeNodeInterface $node): void;
+    public function unlockTree(): void;
 
-    /**
-     * Locks an entire subtree.
-     */
     public function lockSubtree(TreeNodeInterface $node): void;
 
-    /**
-     * Returns the repository implementation.
-     */
-    public function getRepository(): TreeRepositoryInterface;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Node Lookup
+    |--------------------------------------------------------------------------
+    */
+
+    public function exists(int|string $id): bool;
+
+    public function getNode(int|string $id): ?TreeNodeInterface;
+
+    public function refresh(TreeNodeInterface $node): TreeNodeInterface;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Navigation
+    |--------------------------------------------------------------------------
+    */
+
+    public function getRoot(): ?TreeNodeInterface;
+
+    public function getParent(TreeNodeInterface $node): ?TreeNodeInterface;
+
+    public function getChildren(
+        TreeNodeInterface $node,
+        bool $directOnly = true
+    ): iterable;
+
+    public function getDescendants(
+        TreeNodeInterface $node
+    ): iterable;
+
+    public function getAncestors(
+        TreeNodeInterface $node
+    ): iterable;
+
+    public function getSiblings(
+        TreeNodeInterface $node
+    ): iterable;
+
+    public function getNextSibling(
+        TreeNodeInterface $node
+    ): ?TreeNodeInterface;
+
+    public function getPreviousSibling(
+        TreeNodeInterface $node
+    ): ?TreeNodeInterface;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Statistics
+    |--------------------------------------------------------------------------
+    */
+
+    public function countChildren(
+        TreeNodeInterface $node
+    ): int;
+
+    public function countDescendants(
+        TreeNodeInterface $node
+    ): int;
+
+    public function getDepth(
+        TreeNodeInterface $node
+    ): int;
+
+    public function getHeight(
+        TreeNodeInterface $node
+    ): int;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Tree Modification
+    |--------------------------------------------------------------------------
+    */
+
+    public function appendChild(
+        TreeNodeInterface $parent,
+        TreeNodeInterface $child
+    ): void;
+
+    public function prependChild(
+        TreeNodeInterface $parent,
+        TreeNodeInterface $child
+    ): void;
+
+    public function insertBefore(
+        TreeNodeInterface $reference,
+        TreeNodeInterface $newNode
+    ): void;
+
+    public function insertAfter(
+        TreeNodeInterface $reference,
+        TreeNodeInterface $newNode
+    ): void;
+
+    public function moveSubtree(
+        TreeNodeInterface $node,
+        TreeNodeInterface $newParent
+    ): void;
+
+    public function copySubtree(
+        TreeNodeInterface $source,
+        TreeNodeInterface $destination
+    ): TreeNodeInterface;
+
+    public function removeSubtree(
+        TreeNodeInterface $node
+    ): void;
+
+    public function removeNode(
+        TreeNodeInterface $node,
+        bool $promoteChildren = false
+    ): void;
+
+    public function replaceNode(
+        TreeNodeInterface $old,
+        TreeNodeInterface $new
+    ): void;
+
+    public function swapNodes(
+        TreeNodeInterface $first,
+        TreeNodeInterface $second
+    ): void;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Maintenance
+    |--------------------------------------------------------------------------
+    */
+
+    public function verify(): bool;
+
+    public function repair(): void;
+
+    public function rebuild(): void;
+
+    public function optimize(): void;
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Persistence
+    |--------------------------------------------------------------------------
+    */
+
+    public function persist(TreeNodeInterface $node): void;
+
+    public function remove(TreeNodeInterface $node): void;
+
+    public function flush(): void;
+
+    public function clear(): void;
 }
