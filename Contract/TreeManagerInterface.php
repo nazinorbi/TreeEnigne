@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SymfonyTreeEngine\src\Interface;
+namespace App\PhyloTree\Contract;
 interface TreeManagerInterface
 {
     public function createRoot(object $Root): void;
