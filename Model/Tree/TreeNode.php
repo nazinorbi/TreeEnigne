@@ -352,4 +352,23 @@ class TreeNode implements TreeNodeInterface, IteratorAggregate
 
     }
 
+    public function getLft(): ?int
+    {
+        // TODO: Implement getLft() method.
+    }
+
+    public function setLft(int $lft): static
+    {
+        // TODO: Implement setLft() method.
+    }
+
+    public function getRgt(): ?int
+    {
+        // TODO: Implement getRgt() method.
+    }
+
+    public function setRgt(int $rgt): static
+    {
+        // TODO: Implement setRgt() method.
+    }
 }

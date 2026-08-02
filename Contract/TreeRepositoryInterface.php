@@ -5,14 +5,54 @@ interface TreeRepositoryInterface
 {
     public function load(object $Root): void;
 
-    public function save(object $Root): void;
+    /**
+     * Finds a node by its identifier.
+     */
+    public function find(int|string $id): ?TreeNodeInterface;
 
-    public function delete(object $Root): void;
+    /**
+     * Returns the root node.
+     */
+    public function findRoot(): ?TreeNodeInterface;
 
-    public function transaction(object $Root): void;
+    /**
+     * Checks whether the node exists.
+     */
+    public function exists(TreeNodeInterface $node): bool;
 
-    public function unlock(object $Root): void;
+    /**
+     * Returns the direct children of a node.
+     *
+     * @return iterable<TreeNodeInterface>
+     */
+    public function getChildren(TreeNodeInterface $node): iterable;
 
-    public function flush(object $Root): void;
+    /**
+     * Returns all descendants of a node.
+     *
+     * @return iterable<TreeNodeInterface>
+     */
+    public function getDescendants(TreeNodeInterface $node): iterable;
+
+    /**
+     * Returns all ancestors of a node.
+     *
+     * @return iterable<TreeNodeInterface>
+     */
+    public function getAncestors(TreeNodeInterface $node): iterable;
+
+    /**
+     * Returns all leaf nodes in a subtree.
+     *
+     * @return iterable<TreeNodeInterface>
+     */
+    public function getLeaves(TreeNodeInterface $node): iterable;
+
+    /**
+     * Returns the complete subtree including the node itself.
+     *
+     * @return iterable<TreeNodeInterface>
+     */
+    public function getSubtree(TreeNodeInterface $node): iterable;
 
 }

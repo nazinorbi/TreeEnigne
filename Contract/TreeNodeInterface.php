@@ -43,4 +43,24 @@ interface TreeNodeInterface
     public function getLevel(): int;
 
     public function setLevel(int $level): void;
+
+    /**
+     * Returns left boundary value.
+     */
+    public function getLft(): ?int;
+
+    /**
+     * Sets left boundary value.
+     */
+    public function setLft(int $lft): static;
+
+    /**
+     * Returns right boundary value.
+     */
+    public function getRgt(): ?int;
+
+    /**
+     * Sets right boundary value.
+     */
+    public function setRgt(int $rgt): static;
 }
