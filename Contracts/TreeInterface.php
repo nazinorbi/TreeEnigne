@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace App\Phylotree\Contract;
+namespace App\Phylotree\Contracts;
 
-use App\PhyloTree\Contract;
+use App\PhyloTree\Contracts;
 
 
 interface TreeInterface extends

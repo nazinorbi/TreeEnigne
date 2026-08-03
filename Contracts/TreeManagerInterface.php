@@ -1,6 +1,6 @@
 <?php
 
-namespace App\PhyloTree\Contract;
+namespace App\PhyloTree\Contracts;
 interface TreeManagerInterface
 {
     public function createRoot(object $Root): void;

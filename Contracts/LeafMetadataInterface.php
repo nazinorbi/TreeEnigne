@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\PhyloTree\Contract;
+namespace App\PhyloTree\Contractss;
 
 interface LeafMetadataInterface extends TaxonMetadataInterface
 {

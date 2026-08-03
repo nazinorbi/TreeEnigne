@@ -2,10 +2,11 @@
 
 declare(strict_types=1);
 
-namespace App\PhyloTree\Contract;
+namespace App\PhyloTree\Contracts;
 
-use App\PhyloTree\Contract\TreeNodeInterface;
+use App\PhyloTree\Contracts\TreeNodeInterface;
 use  App\PhyloTree\Exception\TreeStorageException;
+
 
 interface TreeStorageInterface
 {
@@ -28,6 +29,7 @@ interface TreeStorageInterface
     |--------------------------------------------------------------------------
     */
 
+    public function lock(): void;
     public function lockTree(): void;
 
     public function unlockTree(): void;
@@ -45,7 +47,7 @@ interface TreeStorageInterface
 
     public function getNode(int|string $id): ?TreeNodeInterface;
 
-    public function refresh(TreeNodeInterface $node): TreeNodeInterface;
+    public function refresh(TreeNodeInterface $node): void;
 
 
     /*

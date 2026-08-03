@@ -1,8 +1,8 @@
 <?php
 
-namespace App\PhyloTree\Contract;
+namespace App\PhyloTree\Contracts;
 
-use App\PhyloTree\Contract\TreeNodeMetadataInterface;
+use App\PhyloTree\Contracts\TreeNodeMetadataInterface;
 interface MutableTreeNodeInterface
 {
     public function setLeft(int $left): void;

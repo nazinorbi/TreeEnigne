@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\PhyloTree\Contract;
+namespace App\PhyloTree\Contracts;
 
 use App\PhyloTree\Enum\TaxonomicRankEnum;
 

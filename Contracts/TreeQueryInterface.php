@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace App\PhyloTree\Contract;
+namespace App\PhyloTree\Contracts;
 
 interface TreeQueryInterface
 {

@@ -1,8 +1,8 @@
 <?php
 
-namespace App\PhyloTree\Contract;
+namespace App\PhyloTree\Contracts;
 
-use App\PhyloTree\Contract\TaxonMetadataInterface;
+use App\PhyloTree\Contracts\TaxonMetadataInterface;
 interface TreeNodeInterface
 {
     public function getId(): int;
