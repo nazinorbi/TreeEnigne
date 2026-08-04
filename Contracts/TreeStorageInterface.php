@@ -47,7 +47,7 @@ interface TreeStorageInterface
 
     public function getNode(int|string $id): ?TreeNodeInterface;
 
-    public function refresh(TreeNodeInterface $node): void;
+    public function refresh(TreeNodeInterface $node): TreeNodeInterface;
 
 
     /*
