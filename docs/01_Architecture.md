@@ -51,4 +51,3 @@
     csatlakozik kap egy bolean értéket. Ezt a tree adatbázisban van tárolva. Továbbá kap egy másik meta adatot is hogy ki szerkezti. 
     Ez akkor jó ha hosszú ideje zárolva van az adott csoó pont. A szerztés végével amit a merge  mű velet jelez a zárolás feloldásra kerül. 
     Így elkerülhető a párhuzamos szerkeztés</p>
-</ol>
